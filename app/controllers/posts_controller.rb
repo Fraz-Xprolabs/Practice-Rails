@@ -1,20 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_user, only: [ :index, :new, :create ]
+  before_action :set_user, only: %i[ index new create ]
 
-  def index
-    @posts = @user.posts
-  end
+  def index; end
 
   def preview
-    render  :preview
+    render :preview
   end
 
   def new
-    @post = @user.posts.new
+    @post = @posts.new
   end
 
   def create
-    @post = @user.posts.new(post_params)
+    @post = @posts.new(post_params)
     if @post.save
       redirect_to @post
     else
@@ -34,6 +32,7 @@ class PostsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+    @posts = @user.posts
   end
 
   def post_params
