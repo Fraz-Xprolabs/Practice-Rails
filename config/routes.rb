@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   resources :users, shallow: true do
     resources :posts do
       collection do
-        get 'recent'
+        get "recent"
       end
 
       member do
-        get 'preview'
+        get "preview"
       end
     end
   end
